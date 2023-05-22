@@ -5,9 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("./imagenes/rym.jpg");
+  background-size: cover;
 }
-
+/* background-size: cover ...para que la imagen se adapte al tamaño del elemento que la contiene. */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+

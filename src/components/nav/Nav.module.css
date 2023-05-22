@@ -1,0 +1,101 @@
+@font-face {
+	font-family: "rym";
+	src: url("../../../fonts/rym.ttf") format('ttf')
+  }
+
+
+.container { 
+	padding: 30px;
+    width: 400px;
+    height: 150px;
+    /* background-image: radial-gradient(circle at 50% 50%, #ff53ba 0, #ff46cb 8.33%, #ff3cda 16.67%, #ff37e4 25%, #ff36ea 33.33%, #ff37eb 41.67%, #ff38e6 50%, #d539de 58.33%, #ad3bd7 66.67%, #873dd0 75%, #5f3fc9 83.33%, #2d41c4 91.67%, #0042c0 100%); */
+    margin-top: 20px;
+    margin-left: 40%;
+	margin-bottom: 10px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Aplicar un borde difuminado */    
+}
+
+.title {
+	position: fixed;
+  	right: 75%;
+	font-size: 50px;
+	color: rgb(142, 72, 207);
+	text-shadow: rgb(197, 167, 33);
+}
+
+.button1 {
+	margin-right: 20px;
+	border-radius: 3px;
+	height: 31px;
+	color: rgb(154, 13, 189);
+	background-color: rgb(228, 146, 23);
+	box-shadow: 0 5px 5px black;
+	&:hover {
+		color: black;
+		background-color: rgb(225, 104, 255);
+		box-shadow: 0 5px 5px white;
+	}
+}
+
+.button2 {
+	margin-left: 20px;
+	border-radius: 3px;
+	height: 31px;
+	color: rgb(154, 13, 189);
+	background-color: rgb(228, 146, 23);
+	box-shadow: 0 5px 5px black;
+	&:hover {
+		color: black;
+		background-color: rgb(225, 104, 255);
+		box-shadow: 0 5px 5px white;
+	}
+}
+
+.button3 {
+	margin-left: 20px;
+	position: relative;
+	left: 45%;
+    margin-top: 20px;
+    border-radius: 3px;
+    height: 31px;
+    color: rgb(207, 20, 20);
+    background-color: rgb(151, 140, 151);
+    box-shadow: 0 5px 5px black;
+    &:hover {
+        color: rgb(151, 140, 151);
+        background-color: rgb(207, 20, 20);
+        box-shadow: 0 5px 5px white;
+    }
+}
+
+
+
+
+.circulo{
+	width: 150px;
+	height: 150px;
+	background-color: #DAA520;
+	border-radius: 50%;
+}
+.diamante2::after{
+	content:'';
+	width: 0px;
+	height: 0;
+	display: block;
+	position: absolute;
+	top: 29px;
+	border-right: 90px solid transparent;
+	border-top:  100px solid tomato;
+	border-left: 90px solid transparent;
+}
+
+.ribbon{
+	width: 0px;
+  height: 100px;
+    border-left: 50px solid #d9534f;
+    border-right: 50px solid #d9534f;
+    border-bottom: 35px solid transparent;
+}
+
+/* ribbon tiene forma de etiqueta, la puedo usar en la parte superior izq para colocar el nombre del personaje */
