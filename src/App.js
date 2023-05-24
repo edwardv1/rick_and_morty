@@ -6,8 +6,9 @@ import Cards from './components/cards/Cards.jsx';
 import Nav from "./components/nav/Nav.jsx";
 import About from "./components/about/About.jsx"
 import Detail from './components/detail/Detail.jsx';
-import Form from './components/form/Form';
-import Error from './components/error/Error';
+import Form from './components/form/Form.jsx';
+import Error from './components/error/Error.jsx';
+import Favorites from "./components/favorites/Favorites.jsx"
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
 
 
    useEffect(() => {
-      !access && navigate('/');
+      !access && navigate('/');  //Haciendo || tengo que ingresar 2 veces para entrar a /home
    }, [access]);
    /*
    useEffect esta mirando a Access por medio del arreglo de dependencia [access], ósea esta atento que si Access sea false o true. 
@@ -83,6 +84,7 @@ function App() {
             }/>
             <Route exact path="/about" element={<About />} />
             <Route exact path="/detail/:id" element={<Detail />} />
+            <Route exact path="/favorites" element={<Favorites />} />
             <Route path="*" element={<Error />}/>
          </Routes>      
       </div>

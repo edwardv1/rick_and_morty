@@ -33,6 +33,10 @@ export default function Nav(props){
                     <button className={styles.button2}>About</button>
                 </NavLink>
 
+                <NavLink to="/favorites">
+                    <button className={styles.button2}>Favorites</button>
+                </NavLink>
+
                 <SearchBar onSearch={props.onSearch} />
                 <Random onSearch={props.onSearch}/>
             </div>

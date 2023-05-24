@@ -15,9 +15,11 @@ export default function About(props) {
                     <h3>Nationality: Venezuelan</h3>
                     <h3>Status: Henry's Student</h3>
                     <h3>Age: 26</h3>
-                    {/* <Link to={"linkedin.com/in/edward-vera-20a577188"}> */}
+                    <Link to={"linkedin.com/in/edward-vera-20a577188"}>
+                        <h3>Prueba Error 404</h3>
+                    </Link>
                     <h3>Linkedin: linkedin.com/in/edward-vera-20a577188</h3>
-                    {/* </Link> */}
+                   
                 </div>
                 <div className={styles.imageContainer}>
                     <img src= {saitama} alt="Owner" />

@@ -1,19 +1,50 @@
 import styles from "./Card.module.css"
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { addFav, removeFav } from "../../redux/actions";
+import { useState, useEffect } from "react";
 
-export default function Card(props) {
+
+
+function Card(props) { //recibe ambas acciones(funciones) por props, y el estado global con myFavorites { addFav: f(character), remove(id)}
+   const [isFav, setIsFav] = useState(false);
+
+   const handleFavorite = () => {
+      if(isFav){
+         setIsFav(false)
+         props.removeFav(props.id)
+      }else{
+         setIsFav(true)
+         props.addFav(props) //props como argumento ya que recibe la info del personaje, pero ademas le estoy mandando addFav y removeFav
+      }
+   }
+
+   useEffect(() => {
+      props.myFavorites.forEach((fav) => {
+         if (fav.id === props.id) {
+            setIsFav(true);
+         }
+      });
+   }, [props.myFavorites]);  //===divUpdate
+   //useEffect recorre todo myFacorites que viene del estado global y se fija si la card que tenemos montada esta dentro del array de Favorites
+   //cada vez que cambie el array yo quiero que vuelva a comprobarlo ....
+
    return (
       <div className={styles.container}>
 
-         {/* <div className={styles.box}>
-
-            <div className={styles.id}>
-               <h4>{props.id}</h4>
-            </div> */}
-         
-            <div className={styles.buttonContainer}>
+         {/* { <div className={styles.box}> */}
+            
+            <div className={styles.headCard}>  
+            {props.id}
+            {
+               isFav ? (
+                  <button onClick={handleFavorite}>❤️</button>
+               ) : (
+                  <button onClick={handleFavorite}>🤍</button>
+               )
+            }
             {/* <button onClick={() => props.onClose(props.id)}>X</button> */}
-               <button onClick={props.onClose}>X</button>
+            <button className={styles.delete} onClick={props.onClose}>X</button>
             </div>
 
          {/* </div> */}
@@ -38,5 +69,28 @@ export default function Card(props) {
       </div>
    );
 }
+
+// ! FUERA DEL COMPONENTE hago el dispatchToProps y el componente Card recibes las actions por medio del conect
+
+
+
+const mapDispatchToProps = (dispatch) => {
+   return{
+      addFav: (character)=> dispatch(addFav(character)),   //necesita un personaje completo
+      removeFav: (id)=> dispatch(removeFav(id))  //necesita un id
+   }
+}
+
+const mapStateToProps = (state) => {  //lo que necesito del state, me traigo todos los favoritos
+   return {
+      myFavorites: state.myFavorites
+   }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card); //null porque no necesito la info del estado global, solo quiero enviar la info de la card por dispatch
+
+
 //<h2>{props.origin?.name}</h2> si existe el objeto props.origin muestra .name
 //no lo coloco porque desde App.js me estan pasando  origin={Rick.origin.name}

@@ -1,6 +1,6 @@
 .container {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   overflow: hidden; /* Oculta el contenido que se desborda */
   background-color: rgb(209, 175, 22);
   border-radius: 10px;
@@ -15,15 +15,13 @@
   }
 }
 
-.box {
+.headCard {
   display: flex;
   height: 24px;
   justify-content: space-between;
 }
 
-.id {
-  width: 0px;
-  height: 5x;
+.container text {
   border-left: 30px solid #d9534f;
   border-right: 30px solid #d9534f;
   border-bottom: 15px solid transparent;
@@ -38,12 +36,9 @@
     border-color: blueviolet;
 }
 
-.buttonContainer {
-  display: flex;
-  justify-content: end;
-}
+
   
-.buttonContainer button {
+.delete {
   margin: 2px 2px 0 0;
   border-radius: 3px;
   background-color: red;
