@@ -67,7 +67,7 @@ function App() {
 
    //Renderizado condicional: uso el hook useLocation de react-router-dom, para hacer el renderizado condicional, para que Nav se muestre siempre y cuando no estemos en la ruta /.
    const location = useLocation();
-   // console.log(location);
+   // console.log(location); //es un objeto, una de la propiedades es pathname, el cual tiene la ruta en donde esa parado el usuario
   
    return (
       <div className='App'>

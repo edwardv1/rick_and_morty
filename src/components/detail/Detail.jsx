@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function Detail(props) {
-    const { id } = useParams();
+    const { id } = useParams(); //Recibo el valor de id pasado por parametro del path
     const [character, setCharacter] = useState({});
 
     useEffect(() => {
