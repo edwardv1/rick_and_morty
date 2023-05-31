@@ -20,12 +20,12 @@ function Card(props) { //recibe ambas acciones(funciones) por props, y el estado
    }
 
    useEffect(() => {
-      props.myFavorites.forEach((fav) => {
+      props.allCharacters.forEach((fav) => {
          if (fav.id === props.id) {
             setIsFav(true);
          }
       });
-   }, [props.myFavorites]);  //===divUpdate
+   }, [props.allCharacters]);  //===divUpdate
    //useEffect recorre todo myFacorites que viene del estado global y se fija si la card que tenemos montada esta dentro del array de Favorites
    //cada vez que cambie el array yo quiero que vuelva a comprobarlo ....
 
@@ -83,7 +83,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {  //lo que necesito del state, me traigo todos los favoritos
    return {
-      myFavorites: state.myFavorites
+      allCharacters: state.allCharacters
    }
 }
 
