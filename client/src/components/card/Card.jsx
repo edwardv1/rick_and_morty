@@ -1,5 +1,5 @@
 import styles from "./Card.module.css"
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import { addFav, removeFav } from "../../redux/actions";
 import { useState, useEffect } from "react";
@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 
 
 function Card(props) { //recibe ambas acciones(funciones) por props, y el estado global con myFavorites { addFav: f(character), remove(id)}
+   
    const [isFav, setIsFav] = useState(false);
 
    const handleFavorite = () => {
@@ -29,6 +30,7 @@ function Card(props) { //recibe ambas acciones(funciones) por props, y el estado
    //useEffect recorre todo myFacorites que viene del estado global y se fija si la card que tenemos montada esta dentro del array de Favorites
    //cada vez que cambie el array yo quiero que vuelva a comprobarlo ....
 
+   const location = useLocation().pathname;
    return (
       <div className={styles.container}>
 
@@ -41,8 +43,12 @@ function Card(props) { //recibe ambas acciones(funciones) por props, y el estado
                   <button onClick={handleFavorite}>🤍</button>
                )
             }
-            {/* <button onClick={() => props.onClose(props.id)}>X</button> */}
-            <button className={styles.delete} onClick={props.onClose}>X</button>
+                        {/* <button onClick={() => props.onClose(props.id)}>X</button> */}
+            {
+            location === "/home"
+            ? <button className={styles.delete} onClick={props.onClose}>X</button>
+            : null
+            }
             </div>
 
          <Link to={`/detail/${props.id}`}

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Form.module.css";
 import validation from "./validation";
-import Error from "../error/Error";
 import imgRick from "../../imagenes/rick.png"
 
 export default function Form(props) {
@@ -28,7 +27,7 @@ export default function Form(props) {
 
     const handleSubmit = event => {
         event.preventDefault(); //para que no se recargue la pagina cuando hagan click en Submit
-        props.onSubmit(userData); 
+        props.login(userData); 
     }
     
     return(

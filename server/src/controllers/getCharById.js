@@ -1,33 +1,26 @@
 const axios = require("axios");
+const URL = "https://rickandmortyapi.com/api/character/";
 
-const getCharById = (res, id) => {
-    axios.get(`https://rickandmortyapi.com/api/character/${id}`)
-    .then(response => response.data)
-    .then(data => {
+module.exports = (req, res) => {
+    const {id} = req.params;
+    axios.get(URL + id)
+    .then(response => {
+        const { status, name, gender, species, origin, image } = response.data;
         const character = {
-            id: data.id,   //id: id?
-            name: data.name,
-            gender: data.gender,
-            species: data.species,
-            origin: data.origin,
-            image: data.image,
-            status: data.status
-
-        };
-        //El response no hace falta transformarlo a JSON pq estoy usando axios, si usara fetch si habria que transformarlo
-        //seteamos el Header
-        res
-        .writeHead(200, {"Content-type": "application/json"})
-        .end(JSON.stringify(character));
+                id, name, gender, species, origin, image, status
+            }
+            return character.name 
+            ? res.status(200).json(character)
+            : res.status(404).send("Not found")
+            })
+    .catch (error => {
+        return res.status(500).send(error.message);
     })
-    .catch((error) => 
-    res
-    .writeHead(500, {"Content-type": "text/plain"})
-    .end(`Error 500. Character with id ${id} not found`) //error.message
-    //tambien lo puedo hacer de esta manera:
-    //.end({"message": "Error"})    como(JSON)
-    //Desde el front puedo chequear si me llega un objeto con propiedad message,
-    //es que hubo un error en el back al buscar el char
-    );
-}
-module.exports = getCharById;
+};                               //json
+
+// if(data.id !== Number(id)) {
+//     ;
+// }
+
+
+//(error) => res.status(500).send(error.message));  //.json({error:error.message})

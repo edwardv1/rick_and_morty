@@ -7,20 +7,33 @@ const initialState = {
 
 const reducer = (state= initialState, action) => {
     switch (action.type) {
+        // case ADD_FAV:
+        //     return{
+        //         ...state,
+        //         myFavorites: [...state.allCharacters, action.payload],
+        //         allCharacters: [...state.allCharacters, action.payload]   //para no ir pisando mientras filtremos
+        //     }
         case ADD_FAV:
-            return{
+            return { 
                 ...state,
-                myFavorites: [...state.allCharacters, action.payload],
-                allCharacters: [...state.allCharacters, action.payload]   //para no ir pisando mientras filtremos
-            }
+                myFavorites: action.payload,
+                allCharacters: action.payload 
+            };
+        // case REMOVE_FAV:
+        //     const filteredFavs = state.allCharacters.filter((favorite) => favorite.id !== Number(action.payload));
+        //     return{
+        //         ...state,
+        //         //myFavorites: state.myFavorites.filter( (character) => character.id !== Number(action.payload) )
+        //         myFavorites: filteredFavs,
+        //         allCharacters: filteredFavs  //Elimina tanto en favoritos como en todos los cards
+        //     }
         case REMOVE_FAV:
-            const filteredFavs = state.allCharacters.filter((favorite) => favorite.id !== Number(action.payload));
-            return{
-                ...state,
-                //myFavorites: state.myFavorites.filter( (character) => character.id !== Number(action.payload) )
-                myFavorites: filteredFavs,
-                allCharacters: filteredFavs  //Elimina tanto en favoritos como en todos los cards
-            }
+        return { 
+            ...state, 
+            myFavorites: action.payload,
+            allCharacters: action.payload
+        };
+        
         case FILTER:
             if(action.payload === "All"){
                 const allCharactersCopy = [...state.allCharacters];

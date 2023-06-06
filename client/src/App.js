@@ -13,20 +13,26 @@ import Favorites from "./components/favorites/Favorites.jsx"
 
 function App() {
    const [characters, setCharacters] = useState([]); //Estado inicial de character
-
    const [access, setAccess] = useState(false);
-   const EMAIL = "ejemplo@gmail.com";
-   const PASSWORD = "123456";
-
    const navigate = useNavigate();
 
-   function onSubmit(userData) { //recibe el objeto con el input del login
-      if (userData.password === PASSWORD && userData.email === EMAIL) {
-         setAccess(true);
-         navigate("/home"); //redirije a la pagina home
-      }else {
-         alert("Wrong email or password");
-      }
+   // function onSubmit(userData) { //recibe el objeto con el input del login
+   //    if (userData.password === PASSWORD && userData.email === EMAIL) {
+   //       setAccess(true);
+   //       navigate("/home"); //redirije a la pagina home
+   //    }else {
+   //       alert("Wrong email or password");
+   //    }
+   // }
+
+   function login(userData) {  //onSubmit
+      const { email, password } = userData;
+      const URL = 'http://localhost:3001/rickandmorty/login/';
+      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+         const { access } = data; //data= {access: false}
+         setAccess(data); //access = true o false
+         access && navigate('/home');
+      });
    }
    
    const handleLogout = () => {
@@ -62,7 +68,7 @@ function App() {
    }
 
    const onClose = (id) => {
-      setCharacters(characters.filter( (char) => char.id !== Number(id))) //me quedo con aquellos personajes con id distinto del id que me pasan por parametro, se lo paso a Card a traves de Cards
+      setCharacters(characters.filter( (char) => char.id !== id)) //me quedo con aquellos personajes con id distinto del id que me pasan por parametro, se lo paso a Card a traves de Cards
    }
 
    //Renderizado condicional: uso el hook useLocation de react-router-dom, para hacer el renderizado condicional, para que Nav se muestre siempre y cuando no estemos en la ruta /.
@@ -78,13 +84,13 @@ function App() {
          }
          {/* <hr /> */}
          <Routes>
-            <Route exact path="/" element={<Form onSubmit={onSubmit} />} />
+            <Route exact path="/" element={<Form login={login} />} />
             <Route exact path="/home" element={
                <Cards characters={characters} onClose={onClose} />
             }/>
             <Route exact path="/about" element={<About />} />
             <Route exact path="/detail/:id" element={<Detail />} />
-            <Route exact path="/favorites" element={<Favorites onClose={onClose}/>} />
+            <Route exact path="/favorites" element={<Favorites />} />
             <Route path="*" element={<Error />}/>
          </Routes>      
       </div>

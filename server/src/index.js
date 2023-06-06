@@ -1,36 +1,42 @@
-const http = require("http");
-const getCharById = require("./controllers/getCharById.js");
+const express = require('express');
+const server = express();
 const PORT = 3001;
-
-http.createServer((req, res) => {
-    //Core...Setea el header, y le permite acceso total a cualquier url
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    
-    if(req.url.includes("/rickandmorty/character")){
-        const id = req.url.split("/").pop();
-        getCharById(res, id)
-    }
-    
-    
-}).listen(PORT, "localhost");
+const router = require("./routes/index");
+const morgan = require("morgan");
+//const cors = require("cors"); no hace falta ya que tenemos una config de seguridad
+//server.use(cors());
 
 
+//Middlewares
+server.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header(
+       'Access-Control-Allow-Headers',
+       'Origin, X-Requested-With, Content-Type, Accept'
+    );
+    res.header(
+       'Access-Control-Allow-Methods',
+       'GET, POST, OPTIONS, PUT, DELETE'
+    );
+    next();
+ });
+
+ server.use(express.json()); //me permite poder leer todo lo que llegue por body,
+ //transforma todo lo que me llega en formato de 0s y 1s desde el navegador a un objeto que JS entiende.
+ server.use(morgan("dev"));
+ server.use("/rickandmorty", router); //toda request que venga de esta ruta, termina de enrotearlo a router, construyo la url en partes. aqui empiezo la ruta y la completo desde router (donde estan las posibles rutas)
+
+server.listen(PORT, () => {
+   console.log('Server raised in port: ' + PORT);
+});
 
 
 
-/* const characters = require("./utils/data"); //[ {id:1}, {}]
 
-if(req.url.includes("/rickandmorty/character")){
-    //const id = req.url.split("/").pop().at(-1);  empieza al final
-    const id = req.url.split("/").pop();
-    const character = characters.filter (char => char.id === Number(id));  //tambien pude usar .pop, .shift
-    //character: [ {id:1}]
-    //char.id tipo: number,  id tipo:string
-    res
-    .writeHead(200, {"content-type": "application-json"})
-    .end(JSON.stringify(character[0]));
-    //character es un array de objetos, le paso el [0] para que llegue como objeto al front
-    //asi no paso todo el personaje con un arreglo sino solo ese personaje como obj
-    //req.url= localhos:3001/rickandmorty/character/4
-    //   split [localhos:3001, rickandmorty, character, 4]
-} */
+/*
+server.use("/rickandmorty", (req, res, next) => {
+   req.url = "/rickandmorty" + req.url;
+   next();
+});
+*/
