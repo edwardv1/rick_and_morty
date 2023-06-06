@@ -86,7 +86,7 @@ function App() {
             <Route exact path="/about" element={<About />} />
             <Route exact path="/detail/:id" element={<Detail />} />
             <Route exact path="/favorites" element={<Favorites />} />
-            <Route path="*" element={<Error />}/>
+            {/* <Route path="*" element={<Error />}/> */}
          </Routes>      
       </div>
    );

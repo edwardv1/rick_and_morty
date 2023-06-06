@@ -4,6 +4,19 @@
     align-items: center;
 }
 
+.contactContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.linkedin {
+    color: #195eac;
+    font-size: 30px;
+    background-color: rgba(255, 255, 255, 0.521);
+    border-radius: 5px;
+}
+
+
 .container {
     display: flex;
     justify-content: center;
@@ -46,3 +59,6 @@
     overflow: hidden;
     object-fit: cover; /* Ajusta la imagen para llenar el contenedor */
 }
+.container a {
+    text-decoration: none;
+  }
