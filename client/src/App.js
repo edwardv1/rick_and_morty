@@ -16,29 +16,23 @@ function App() {
    const [access, setAccess] = useState(false);
    const navigate = useNavigate();
 
-   // function onSubmit(userData) { //recibe el objeto con el input del login
-   //    if (userData.password === PASSWORD && userData.email === EMAIL) {
-   //       setAccess(true);
-   //       navigate("/home"); //redirije a la pagina home
-   //    }else {
-   //       alert("Wrong email or password");
-   //    }
-   // }
-
-   function login(userData) {  //onSubmit
-      const { email, password } = userData;
-      const URL = 'http://localhost:3001/rickandmorty/login/';
-      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+   //Usando Asyncwait
+   async function login(userData) {
+      try {
+         const { email, password } = userData;
+         const URL = 'http://localhost:3001/rickandmorty/login/';
+         const { data } = await axios(URL + `?email=${email}&password=${password}`)
          const { access } = data; //data= {access: false}
          setAccess(data); //access = true o false
          access && navigate('/home');
-      });
+      } catch (error) {
+         window.alert("Wrong email or password!");
+      }
    }
-   
+
    const handleLogout = () => {
       setAccess(false);
    }
-
 
    useEffect(() => {
       !access && navigate('/');  //Haciendo || tengo que ingresar 2 veces para entrar a /home
@@ -49,22 +43,23 @@ function App() {
    porque todo el tiempo se pregunta que vale access.
    */
 
-   function onSearch(id) {  // 2 = id que ingrese el usuario => { id : 2}
-      axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
-         //console.log(data); //objeto con los datos del personaje
-         //console.log(id); //2
-         if (!characters.some( character => character.id === data.id )){
+   //Usando Asyncwait
+   async function onSearch(id) { // 2 = id que ingrese el usuario => { id : 2}
+      try {
+         const { data } = await axios(`http://localhost:3001/rickandmorty/character/${id}`);
+          //console.log(data); objeto con los datos del personaje
+         if (!characters.some(character => character.id === data.id)) {
             if (data.name) {
-                  setCharacters((characters) => [...characters, data]);//crea el nombre de un arreglo, hace la copia y le agrega al arreglo un personaje nuevo pasado por id
+               setCharacters(characters => [...characters, data]); //crea el nombre de un arreglo, hace la copia y le agrega al arreglo un personaje nuevo pasado por id
             } else {
-               window.alert('¡There are no characters with this ID!');
-               }
-            } else { 
-               window.alert('¡There is already a character with this ID!');  
+               window.alert('There are no characters with this ID!');
             }
-      }).catch( error => { //CATCH CUANDO SE INGRESA UN PERSONAJE QUE NO ES PERMITIDO
-         window.alert("¡The character with the entered ID does not exist!")
-      })
+         } else {
+            window.alert('There is already a character with this ID!');
+         }
+      } catch (error) { //CATCH CUANDO SE INGRESA UN PERSONAJE QUE NO ES PERMITIDO
+         window.alert('The character with the entered ID does not exist!');
+      }
    }
 
    const onClose = (id) => {

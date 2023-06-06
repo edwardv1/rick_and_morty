@@ -30,13 +30,3 @@ server.use((req, res, next) => {
 server.listen(PORT, () => {
    console.log('Server raised in port: ' + PORT);
 });
-
-
-
-
-/*
-server.use("/rickandmorty", (req, res, next) => {
-   req.url = "/rickandmorty" + req.url;
-   next();
-});
-*/

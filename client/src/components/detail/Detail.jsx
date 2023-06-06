@@ -7,6 +7,8 @@ export default function Detail(props) {
     const { id } = useParams(); //Recibo el valor de id pasado por parametro del path
     const [character, setCharacter] = useState({});
 
+    //[NOTA]: no modificaremos el archivo Detail.jsx 
+    //porque suele ser más conveniente utilizar promesas en los useEffect que utilizar async/await.
     useEffect(() => {
         axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
            if (data.name) {
