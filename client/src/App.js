@@ -21,12 +21,11 @@ function App() {
       try {
          const { email, password } = userData;
          const URL = 'http://localhost:3001/rickandmorty/login/';
-         const { data } = await axios(URL + `?email=${email}&password=${password}`)
-         const { access } = data; //data= {access: false}
-         setAccess(data); //access = true o false
+         const { access } = (await axios(URL + `?email=${email}&password=${password}`)).data; //data= {access: false}
+         setAccess(access); //access = true/false
          access && navigate('/home');
       } catch (error) {
-         window.alert("Wrong email or password!");
+         window.alert("Wrong email or password!"); //error.message
       }
    }
 

@@ -8,7 +8,7 @@ module.exports = (req, res) => {
         //if(user.email === email && user.password === password) access = true;
         user.email === email && user.password === password 
         ? access = true 
-        : alert("");  //se ejecuta el alert del front, en la funcion login
+        : null;  //window.alert("");  //se ejecuta el alert del front, en la funcion login
     })
     return res.status(200).json({ access }); // envio  {access: true/false}
 }
