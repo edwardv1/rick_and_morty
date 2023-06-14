@@ -9,6 +9,7 @@ import Detail from './components/detail/Detail.jsx';
 import Form from './components/form/Form.jsx';
 import Error from './components/error/Error.jsx';
 import Favorites from "./components/favorites/Favorites.jsx"
+import SearchBar from './components/searchBar/SearchBar';
 
 
 function App() {
@@ -73,9 +74,15 @@ function App() {
       <div className='App'>
          {
             location.pathname !== "/"
-            ? <Nav onSearch={onSearch} handleLogout={handleLogout}/>
+            ? <Nav  handleLogout={handleLogout}/>
             : null
          }
+         {
+            location.pathname !== "/"
+            ? <SearchBar onSearch={onSearch}/>
+            : null
+         }
+
          {/* <hr /> */}
          <Routes>
             <Route exact path="/" element={<Form login={login} />} />

@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Card from "../card/Card";
 import { orderCards, filterCards } from "../../redux/actions";
 import { useEffect, useState } from "react";
+import styles from "../favorites/Favorites.module.css"
 
 function Favorites(props) {
     
@@ -31,8 +32,8 @@ function Favorites(props) {
     //asi me muestra los todos favoritos cuando vuelvo a entrar a la pantalla
 
     return (
-        <div style={cardsContainer}> 
-            <div>
+        <div>
+            <div className={styles.container}>
                 <select name="order" onChange={handleOrder}>
                     <option value="order" disabled="disabled">Order</option>
                     <option value="A">Ascendente</option>
@@ -48,6 +49,7 @@ function Favorites(props) {
                     <option value="unknown">unknown</option>
                 </select>
             </div>
+                <div style={cardsContainer}> 
             {
             favorites.map( (character) => {
                 return (
@@ -58,13 +60,16 @@ function Favorites(props) {
                     status={character.status}
                     species={character.species}
                     gender={character.gender}
-                    origin={character.origin?.name}
+                    origin={character.origin}
                     image={character.image}
                     />
                 )
             })
             }
+            </div>
         </div>
     )
 }
 export default Favorites;
+
+// origin={character.origin?.name}

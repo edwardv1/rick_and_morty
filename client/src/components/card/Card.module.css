@@ -1,4 +1,123 @@
-.container {
+.imageContainer {
+  position: relative;
+  display: inline-block; /* Asegura que el contenedor se ajuste al tamaño de la imagen */
+  margin-top: 20px;
+  margin-bottom: 80px;
+  border-top: 5px;
+  box-shadow: 0 0 10px black;
+  &:hover {
+       box-shadow: 0 0 5px rgb(175, 45, 143);
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.textId {
+  font-family: fantasy;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+  margin-left: 10px;
+}
+
+.heart {
+  background-color: rgba(209, 175, 22, 0);
+  border: none;
+}
+
+.delete {
+  margin-right: 10px;
+  margin-top: 3px;
+  /* margin: 2px 2px 0 0; */
+  border-radius: 3px;
+  background-color: red;
+  color: white;
+  box-shadow: 0 3px 3px black;
+  &:hover {
+      color: red;
+      background-color: white;
+      box-shadow: 0 3px 3px red;
+  }
+}
+
+.headCard {
+  display: flex;
+  height: 24px;
+  justify-content: space-between;
+}
+
+.child {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 15px;
+  text-align: center;
+
+  background-color: rgb(209, 175, 22);
+  width: 180px;
+  height: 40px;
+  border: 4px solid #000;
+}
+
+.name {
+  overflow: hidden;
+  font-size: 1em;
+  border-bottom: none;
+  
+  color: darkgreen;
+  font-family: fantasy;
+}
+
+.dataCard {
+  position: absolute;
+  /* top: 100%; */
+  left: 0;
+  width: 100%;
+  height: 70px;
+  margin-bottom: 100px;
+  background-color: rgb(209, 175, 22);
+  border-bottom: 5px;
+  top: 100%;
+  margin-top: 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 3px;
+}
+
+.section {
+  background-color: rgba(168, 141, 18, 0.527);
+  padding: 2px;
+  margin: 4px;
+  overflow: hidden;
+  font-size: 1em;
+  border-bottom: none;
+  
+  color: darkgreen;
+  font-family: fantasy;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+container {
   /* display: flex;
   flex-direction: column; */
   overflow: hidden; /* Oculta el contenido que se desborda */
@@ -15,11 +134,8 @@
   }
 }
 
-.headCard {
-  display: flex;
-  height: 24px;
-  justify-content: space-between;
-}
+
+
 
 .container text {
   border-left: 30px solid #d9534f;
@@ -29,27 +145,16 @@
 
 
 .container img {
-  margin-top: 10%;
-    width: 140px;
-    box-shadow: 0 5px 5px black;
+  /* margin-top: 10%; */
+
+    /* box-shadow: 0 5px 5px black; */
     margin-bottom: 6px;
     border-color: blueviolet;
 }
 
 
-  
-.delete {
-  margin: 2px 2px 0 0;
-  border-radius: 3px;
-  background-color: red;
-  color: white;
-  box-shadow: 0 3px 3px black;
-  &:hover {
-      color: red;
-      background-color: white;
-      box-shadow: 0 3px 3px red;
-  }
-}
+
+
 
 
 .dataContainer {

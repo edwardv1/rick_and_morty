@@ -37,6 +37,10 @@ export default function About(props) {
     )
 }
 
+// Blank es para que me redirija a otra pagina sin que se me cierre la mia.
+// Href: url donde quiero que me lleve
+
+
 {/* <Link to={"linkedin.com/in/edward-vera-20a577188"}>
     <h3>Prueba Error 404</h3>
 </Link> */}

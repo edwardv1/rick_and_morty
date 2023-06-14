@@ -32,49 +32,51 @@ function Card(props) { //recibe ambas acciones(funciones) por props, y el estado
 
    const location = useLocation().pathname;
    return (
-      <div className={styles.container}>
+      <div className={styles.imageContainer}>
 
-            <div className={styles.headCard}>  
-            {props.id}
-            {
-               isFav ? (
-                  <button onClick={handleFavorite}>❤️</button>
-               ) : (
-                  <button onClick={handleFavorite}>🤍</button>
-               )
-            }
-                        {/* <button onClick={() => props.onClose(props.id)}>X</button> */}
-            {
-            location === "/home"
-            ? <button className={styles.delete} onClick={props.onClose}>X</button>
-            : null
-            }
+          <img style={{ width: '200px', height: 'auto', marginBottom: "10px" }} src={props.image} alt={props.name}/>
+
+          <div className={styles.overlay}>
+           
+            <div className={styles.headCard}>
+               <a className={styles.textId}>{props.id}</a>
+
+               {
+                  isFav ? (
+                     <button className={styles.heart} onClick={handleFavorite}>❤️</button>
+                  ) : (
+                     <button className={styles.heart} onClick={handleFavorite}>🤍</button>
+                  )
+               }
+
+               {
+                  location === "/home"
+               ? <button className={styles.delete} onClick={props.onClose}>X</button>
+               : null
+               }
             </div>
 
-         <Link to={`/detail/${props.id}`}
-         className={styles.text}>
+            <Link to={`/detail/${props.id}`} className={styles.text}>
+               <div className={styles.child}>
+                  <a className={styles.name}>{props.name}</a>
+               </div>
+            </Link>
 
-         <div className={styles.dataContainer}>
-            <h2>{props.name}</h2>
-            <h3>{props.status}</h3>
-            <h3>{props.species}</h3>
-            <h3>{props.gender}</h3>
-            <h3>{props.origin}</h3> 
-         </div>
-         
-         <div>
-            <img src={props.image} alt={props.name} />
-         </div>
+          </div>
 
-      </Link>
-
+         <Link to={`/detail/${props.id}`} className={styles.text}>
+            <div className={styles.dataCard}>
+               <div className={styles.section}>{props.status}</div>
+               <div className={styles.section}>{props.species}</div>
+               <div className={styles.section}>{props.gender}</div>
+               <div className={styles.section}>{props.origin}</div>
+            </div>
+          </Link>
       </div>
    );
 }
 
 // ! FUERA DEL COMPONENTE hago el dispatchToProps y el componente Card recibes las actions por medio del conect
-
-
 
 const mapDispatchToProps = (dispatch) => {
    return{
@@ -88,8 +90,6 @@ const mapStateToProps = (state) => {  //lo que necesito del state, me traigo tod
       allCharacters: state.allCharacters
    }
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Card); //null porque no necesito la info del estado global, solo quiero enviar la info de la card por dispatch
 

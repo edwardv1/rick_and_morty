@@ -14,12 +14,12 @@ export default function Cards({ characters, onClose }) {  //haciendolo asi evito
             <Card 
             key={character.id}
             id={character.id}
+            image={character.image}
             name={character.name}
             status={character.status}
             species={character.species}
             gender={character.gender}
             origin={character.origin?.name}
-            image={character.image}
             onClose={() => onClose(character.id)}
          />
          ))
