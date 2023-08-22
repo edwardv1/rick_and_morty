@@ -9,11 +9,6 @@ export default function Nav(props){
 
     return (
         <div className={styles.container}>
-            
-           
-                
-
-            
                 <NavLink to="/home">
                     <button className={styles.button}>Home</button>
                 </NavLink>
@@ -33,8 +28,7 @@ export default function Nav(props){
 
                 {/* <SearchBar onSearch={props.onSearch} /> */}
                 {/* <Random onSearch={props.onSearch}/> */}
-                
-            
+                       
         </div>
     )
 }

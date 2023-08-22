@@ -1,2 +1,33 @@
-
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+@media screen and (min-width: 1200px){
+    .container {
+        background-color: blue; 
+    }
+}
+@media screen and (max-width: 1200px){
+    .container {
+        background-color: white; 
+    }
+}
+@media screen and (max-width: 992px){
+    .container {
+        background-color: red; 
+    }
+}
+@media screen and (max-width: 768px){
+    .container {
+        background-color: yellow;
+        padding: 0px 10px 0px 10px;
+    }
+}
+@media screen and (max-width: 600px){
+    .container {
+        background-color: fuchsia; 
+    }
+}
   

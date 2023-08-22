@@ -24,17 +24,16 @@ export default function SearchBar(props) {
       setInputValue("");
    };
 
-   
    const handleIdRandom = (min=1, max=825) => {
-   const id = Math.floor((Math.random() * (max - min + 1)) + min);
-   console.log("indexRandom: " + id);
-   setIdRandom(id); //le agrego el id aleatorio a idRandom
-   console.log("idRandom: " + idRandom);
-   props.onSearch(idRandom); //Lo envio de regreso al componente padre
-}
-    
+      const id = Math.floor((Math.random() * (max - min + 1)) + min);
+      console.log("indexRandom: " + id);
+      setIdRandom(id); //le agrego el id aleatorio a idRandom
+      console.log("idRandom: " + idRandom);
+      props.onSearch(idRandom); //Lo envio de regreso al componente padre
+   }
+ 
    return (
-      <div className={styles.container}>
+      <div className={styles.container} >
          <input 
          type="text"
          placeholder="Enter an Id..."
@@ -45,7 +44,7 @@ export default function SearchBar(props) {
          />
          {/* <button onClick={() => props.onSearch(id)}>Agregar</button> */}
          <button onClick={() => handleButtonClick(id)}>Add</button>
-         <img style={{ width: '300px', height: '70px', marginRight: "20px" }} src={imagenCentral} alt="Logo Rick&Morty" />
+         <img style={{ width: '300px', height: '70px', marginRight: "20px" }} className={styles.logo} src={imagenCentral} alt="Logo Rick&Morty" />
          <button onClick={() => handleIdRandom()}>Random Character</button>
     
       </div>
