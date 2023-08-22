@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom"
-import styles from "./About.module.css"
-import saitama from "../../imagenes/saitama.png"
-import linkedIn from "../../imagenes/LinkedIn_logo_initials.png"
+import { Link } from "react-router-dom";
+import styles from "./About.module.css";
+import saitama from "../../imagenes/saitama.png";
+import linkedIn from "../../imagenes/LinkedIn_logo_initials.png";
 
 export default function About(props) {
     return (
